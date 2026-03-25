@@ -3,446 +3,611 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IDEA FOUNDRY | eLab Journey</title>
+  <title>IDEA FOUNDRY | eLab · ALU · 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green:    #16a34a;
+      --green-d:  #15803d;
+      --green-l:  #22c55e;
+      --green-xl: #bbf7d0;
+      --green-2x: #f0fdf4;
+      --white:    #ffffff;
+      --off:      #f9fafb;
+      --g100:     #f1f5f9;
+      --g200:     #e2e8f0;
+      --g400:     #94a3b8;
+      --g600:     #475569;
+      --g800:     #1e293b;
+      --g900:     #0f172a;
+      --sh-sm:    0 2px 8px rgba(0,0,0,0.08);
+      --sh-md:    0 8px 30px rgba(0,0,0,0.12);
+      --sh-lg:    0 20px 60px rgba(0,0,0,0.16);
+      --sh-xl:    0 30px 80px rgba(0,0,0,0.22);
+      --r:        14px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;background:#fff;color:var(--g900);overflow-x:hidden;cursor:none}
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    /* CURSOR */
+    #cd{width:8px;height:8px;background:var(--green);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .08s}
+    #cr{width:36px;height:36px;border:2px solid var(--green);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.55;transition:width .25s,height .25s,opacity .25s,background .25s}
+    #cr.h{width:54px;height:54px;opacity:1;background:rgba(22,163,74,.08)}
 
-  <!-- Stylesheet -->
-  <link rel="stylesheet" href="style.css">
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(255,255,255,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--g200);padding:0 3rem;height:64px;display:flex;align-items:center;justify-content:space-between;transition:box-shadow .3s,height .3s}
+    nav.sc{box-shadow:var(--sh-md);height:56px}
+    .nl{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.1em;color:var(--g900);text-decoration:none;display:flex;align-items:center;gap:.5rem}
+    .nd{width:8px;height:8px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}
+    .nli{display:flex;list-style:none;gap:.2rem;align-items:center}
+    .nli a{font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--g600);text-decoration:none;padding:.4rem .7rem;border-radius:6px;transition:color .2s,background .2s}
+    .nli a:hover{color:var(--green);background:var(--green-2x)}
+    .nc{background:var(--green)!important;color:#fff!important;border-radius:8px!important;font-weight:700!important}
+    .nc:hover{background:var(--green-d)!important}
+
+    /* HERO */
+    .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;background:linear-gradient(135deg,#f0fdf4 0%,#fff 55%,#f0fdf4 100%)}
+    .hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(22,163,74,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(22,163,74,.055) 1px,transparent 1px);background-size:48px 48px;animation:gridMove 18s linear infinite}
+    @keyframes gridMove{from{background-position:0 0}to{background-position:48px 48px}}
+    .hl{padding:10rem 4rem 5rem 3.5rem;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2}
+    .eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--green);background:var(--green-2x);border:1px solid var(--green-xl);padding:.4rem .9rem;border-radius:100px;width:fit-content;margin-bottom:1.8rem;animation:sU .7s ease both}
+    .eyd{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+    .hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,7.5vw,8rem);line-height:.9;letter-spacing:.02em;color:var(--g900);animation:sU .8s .1s ease both}
+    .hero h1 .acc{color:var(--green);position:relative;display:inline-block}
+    .hero h1 .acc::after{content:'';position:absolute;bottom:4px;left:0;right:0;height:7px;background:var(--green-xl);z-index:-1;border-radius:3px;transform:scaleX(0);transform-origin:left;animation:ulG .7s .9s ease forwards}
+    @keyframes ulG{to{transform:scaleX(1)}}
+    .hsub{font-size:1rem;color:var(--g600);line-height:1.85;margin-top:1.8rem;max-width:430px;animation:sU .9s .2s ease both}
+    .hact{display:flex;gap:1rem;margin-top:2.5rem;animation:sU 1s .3s ease both}
+    .btn{padding:.9rem 2rem;font-family:'Inter',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:10px;text-decoration:none;display:inline-block;transition:transform .2s,box-shadow .2s;cursor:none;border:none}
+    .btn:hover{transform:translateY(-3px)}
+    .bs{background:var(--green);color:#fff;box-shadow:0 4px 20px rgba(22,163,74,.4)}
+    .bs:hover{box-shadow:0 8px 32px rgba(22,163,74,.55);background:var(--green-d)}
+    .bb{background:#fff;color:var(--g800);border:2px solid var(--g200);box-shadow:var(--sh-sm)}
+    .bb:hover{border-color:var(--green);color:var(--green)}
+    .hstats{display:flex;gap:2.5rem;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--g200);animation:sU 1.1s .45s ease both}
+    .hst{display:flex;flex-direction:column}
+    .hsn{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;color:var(--green);line-height:1}
+    .hsl{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--g400);margin-top:.25rem;font-weight:600}
+
+    /* Hero right – image mosaic */
+    .hr{position:relative;overflow:hidden;padding:8rem 3rem 4rem 2rem;display:flex;align-items:center;justify-content:center;animation:fI 1s .3s ease both}
+    .mosaic{display:grid;grid-template-columns:1fr 1fr;gap:1rem;width:100%;max-width:500px;position:relative;z-index:2}
+    .mi{border-radius:var(--r);overflow:hidden;box-shadow:var(--sh-lg)}
+    .mi img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+    .mi:hover img{transform:scale(1.05)}
+    .mi.t{grid-row:span 2;height:360px;animation:fA 6s ease-in-out infinite}
+    .mi.s{height:170px}
+    .mi.s:nth-child(2){animation:fB 6s 1s ease-in-out infinite}
+    .mi.s:nth-child(3){animation:fC 6s 2s ease-in-out infinite}
+    @keyframes fA{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    @keyframes fB{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+    @keyframes fC{0%,100%{transform:translateY(0)}50%{transform:translateY(-13px)}}
+    .hbadge{position:absolute;bottom:5rem;left:2.5rem;background:#fff;border:1px solid var(--g200);border-left:4px solid var(--green);border-radius:12px;padding:1rem 1.3rem;box-shadow:var(--sh-md);z-index:5;animation:sU 1s .6s ease both}
+    .hbadge h4{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.06em;color:var(--g900);line-height:1}
+    .hbadge p{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--green);font-weight:700;margin-top:.2rem}
+
+    /* MARQUEE */
+    .mq{background:var(--green);padding:.9rem 0;overflow:hidden;white-space:nowrap}
+    .mqi{display:inline-flex;animation:mq 28s linear infinite}
+    .mqi span{font-family:'Bebas Neue',sans-serif;font-size:.85rem;letter-spacing:.2em;color:#fff;padding:0 1.8rem}
+    .mqs{color:rgba(255,255,255,.35)!important;padding:0!important}
+
+    /* SECTION COMMONS */
+    .cont{max-width:1200px;margin:0 auto}
+    .stag{display:inline-flex;align-items:center;gap:.5rem;font-size:.65rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--green);margin-bottom:1rem}
+    .stag::before{content:'';width:20px;height:2px;background:var(--green);border-radius:2px}
+    .sh{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.93;letter-spacing:.02em;color:var(--g900)}
+
+    /* ABOUT */
+    #about{padding:9rem 3.5rem;background:#fff}
+    .awrap{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
+    .aimgs{display:grid;grid-template-columns:1fr 1fr;gap:1rem;position:relative}
+    .ai{border-radius:var(--r);overflow:hidden;box-shadow:var(--sh-md)}
+    .ai img{width:100%;height:100%;object-fit:cover;display:block}
+    .ai.tall{grid-row:span 2;height:360px}
+    .ai.sq{height:170px}
+    .atag{position:absolute;bottom:-1.5rem;right:-1.5rem;background:var(--green);color:#fff;padding:1.2rem 1.5rem;border-radius:12px;box-shadow:var(--sh-xl);text-align:center}
+    .atag strong{display:block;font-family:'Bebas Neue',sans-serif;font-size:2.2rem;line-height:1}
+    .atag span{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;opacity:.85}
+    .atext .sh{margin-bottom:1.5rem}
+    .atext p{font-size:1rem;color:var(--g600);line-height:1.9;margin-bottom:1.2rem}
+    .pills{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.5rem}
+    .pill{font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--green-2x);color:var(--green);border:1px solid var(--green-xl);padding:.4rem .9rem;border-radius:100px}
+
+    /* PROBLEM */
+    #problem{padding:9rem 3.5rem;background:var(--g900);position:relative;overflow:hidden}
+    #problem::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%2322c55e' fill-opacity='.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E")}
+    .pin{max-width:1200px;margin:0 auto;position:relative}
+    .phdr{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3.5rem;gap:3rem}
+    .phdr .sh{color:#fff}
+    .phdr .stag{color:#4ade80}
+    .phdr .stag::before{background:#4ade80}
+    .phdr p{max-width:380px;font-size:.95rem;color:rgba(255,255,255,.5);line-height:1.85}
+    .pcards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+    .pc{border-radius:var(--r);overflow:hidden;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);transition:transform .35s cubic-bezier(.34,1.56,.64,1),border-color .3s,box-shadow .3s;cursor:none}
+    .pc:hover{transform:translateY(-10px);border-color:var(--green);box-shadow:0 20px 50px rgba(22,163,74,.28)}
+    .pci{height:220px;overflow:hidden;position:relative}
+    .pci img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+    .pc:hover .pci img{transform:scale(1.08)}
+    .pci::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(15,23,42,.88))}
+    .pn{position:absolute;bottom:1rem;left:1.2rem;font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:rgba(255,255,255,.12);line-height:1;z-index:2}
+    .pcb{padding:1.6rem}
+    .pcb h3{font-weight:700;font-size:1rem;color:#fff;margin-bottom:.6rem}
+    .pcb p{font-size:.85rem;color:rgba(255,255,255,.48);line-height:1.75}
+
+    /* MISSION */
+    #mission{padding:10rem 3.5rem;background:var(--green);position:relative;overflow:hidden;text-align:center}
+    #mission::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1560493676-04071c5f467b?w=1800&q=60&auto=format&fit=crop') center/cover no-repeat;opacity:.1;mix-blend-mode:luminosity}
+    .min{max-width:860px;margin:0 auto;position:relative}
+    .mtag{display:inline-flex;align-items:center;gap:.5rem;font-size:.65rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.85);background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);padding:.4rem 1rem;border-radius:100px;margin-bottom:2rem}
+    .mq2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3.8rem);line-height:1.15;color:#fff;letter-spacing:.02em}
+    .mq2 em{font-style:normal;background:rgba(255,255,255,.2);padding:0 .25em;border-radius:4px}
+    .mline{width:60px;height:3px;background:rgba(255,255,255,.4);border-radius:2px;margin:2.5rem auto}
+
+    /* SOLUTION */
+    #solution{padding:9rem 3.5rem;background:var(--off)}
+    .soli{max-width:1200px;margin:0 auto}
+    .solhdr{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;margin-bottom:4rem}
+    .solhdr p{font-size:1rem;color:var(--g600);line-height:1.85}
+    .scards{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+    .sc{background:#fff;border-radius:var(--r);overflow:hidden;border:1px solid var(--g200);box-shadow:var(--sh-sm);transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .3s,border-color .3s;cursor:none}
+    .sc:hover{transform:translateY(-10px) scale(1.02);box-shadow:var(--sh-xl);border-color:var(--green)}
+    .sci{height:200px;overflow:hidden}
+    .sci img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+    .sc:hover .sci img{transform:scale(1.1)}
+    .scb{padding:1.3rem}
+    .chip{font-size:.58rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--green);background:var(--green-2x);border:1px solid var(--green-xl);padding:.2rem .6rem;border-radius:100px;display:inline-block;margin-bottom:.6rem}
+    .scb h4{font-weight:700;font-size:.9rem;color:var(--g900);margin-bottom:.4rem;line-height:1.3}
+    .scb p{font-size:.8rem;color:var(--g400);line-height:1.65}
+
+    /* JOURNEY */
+    #journey{padding:9rem 3.5rem;background:#fff;position:relative}
+    #journey::before{content:'';position:absolute;top:9rem;bottom:9rem;left:0;width:4px;background:linear-gradient(to bottom,var(--green),var(--green-xl));border-radius:0 2px 2px 0}
+    .joi{max-width:1200px;margin:0 auto}
+    .sgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:4rem;position:relative}
+    .sgrid::before{content:'';position:absolute;top:20px;left:0;right:0;height:2px;background:linear-gradient(to right,var(--green),var(--green-xl),var(--green))}
+    .step{position:relative}
+    .sdot{width:40px;height:40px;border-radius:50%;background:#fff;border:3px solid var(--green);display:flex;align-items:center;justify-content:center;margin-bottom:1.8rem;position:relative;z-index:2;box-shadow:0 0 0 6px rgba(22,163,74,.12);transition:transform .3s,box-shadow .3s}
+    .step:hover .sdot{transform:scale(1.15);box-shadow:0 0 0 10px rgba(22,163,74,.16)}
+    .sdot span{font-family:'Bebas Neue',sans-serif;font-size:.9rem;color:var(--green);line-height:1}
+    .step h3{font-weight:700;font-size:1rem;color:var(--g900);margin-bottom:.6rem}
+    .step p{font-size:.85rem;color:var(--g600);line-height:1.75}
+
+    /* TEAM */
+    #team{padding:9rem 3.5rem;background:var(--g100);overflow:hidden;position:relative}
+    #team::after{content:'TEAM';position:absolute;right:-2rem;top:50%;transform:translateY(-50%) rotate(90deg);font-family:'Bebas Neue',sans-serif;font-size:14rem;letter-spacing:.1em;color:rgba(22,163,74,.04);pointer-events:none;line-height:1}
+    .tmi{max-width:1200px;margin:0 auto;position:relative}
+    .mgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:1.5rem;margin-top:3.5rem}
+    .mem{background:#fff;border:1px solid var(--g200);border-radius:var(--r);padding:2rem 1.2rem 1.5rem;text-align:center;transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .3s,border-color .3s;cursor:none}
+    .mem:hover{transform:translateY(-10px);box-shadow:var(--sh-xl);border-color:var(--green)}
+    .mav{width:90px;height:90px;border-radius:50%;margin:0 auto 1.2rem;overflow:hidden;border:3px solid var(--g200);background:var(--green-2x);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--green);transition:border-color .3s}
+    .mem:hover .mav{border-color:var(--green)}
+    .mav img{width:100%;height:100%;object-fit:cover}
+    .mem h3{font-size:.88rem;font-weight:700;color:var(--g900);margin-bottom:.3rem}
+    .mem p{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--green);font-weight:700}
+    .mrb{width:30px;height:2px;background:var(--green-xl);border-radius:2px;margin:.6rem auto 0;transition:width .3s,background .3s}
+    .mem:hover .mrb{width:50px;background:var(--green)}
+
+    /* MEDIA */
+    #media{padding:9rem 3.5rem;background:#fff}
+    .medi{max-width:1200px;margin:0 auto}
+    .mgrd{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:auto auto;gap:1.2rem;margin-top:3.5rem}
+    .mcard{border-radius:var(--r);overflow:hidden;position:relative;box-shadow:var(--sh-md);cursor:none}
+    .mcard img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+    .mcard:hover img{transform:scale(1.06)}
+    .mov{position:absolute;inset:0;background:linear-gradient(to top,rgba(15,23,42,.75) 0%,transparent 60%);opacity:0;transition:opacity .3s;display:flex;align-items:flex-end;padding:1.5rem}
+    .mcard:hover .mov{opacity:1}
+    .movt h4{font-size:.95rem;font-weight:700;color:#fff}
+    .movt p{font-size:.78rem;color:rgba(255,255,255,.75);margin-top:.2rem}
+    .mcard.big{grid-row:span 2;height:420px}
+    .mcard.sm{height:200px}
+
+    /* CHALLENGES */
+    #challenges{padding:9rem 3.5rem;background:var(--g100)}
+    .chi{max-width:1200px;margin:0 auto}
+    .cgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.8rem;margin-top:3.5rem}
+    .cgrid .cc:last-child:nth-child(odd){grid-column:1/-1;max-width:640px;margin:0 auto;width:100%}
+    .cc{background:#fff;border:1px solid var(--g200);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh-sm);transition:transform .3s,box-shadow .3s,border-color .3s;cursor:none}
+    .cc:hover{transform:translateY(-6px);box-shadow:var(--sh-xl);border-color:var(--green)}
+    .cvw{position:relative;aspect-ratio:16/9;background:var(--g900)}
+    .cvw iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+    .cinfo{display:flex;align-items:center;gap:1.2rem;padding:1.2rem 1.5rem;border-top:1px solid var(--g200)}
+    .cn{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--green-l);line-height:1;flex-shrink:0}
+    .cinfo h3{font-size:.92rem;font-weight:700;color:var(--g900)}
+    .cinfo p{font-size:.8rem;color:var(--g400);margin-top:.2rem;line-height:1.5}
+
+    /* CONTACT */
+    #contact{padding:9rem 3.5rem;background:#fff;position:relative;overflow:hidden}
+    #contact::before{content:'';position:absolute;top:0;right:0;width:50%;height:100%;background:linear-gradient(135deg,var(--green-2x),#fff);z-index:0}
+    .coni{max-width:1200px;margin:0 auto;position:relative;z-index:1}
+    .cogrid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start;margin-top:3.5rem}
+    .col h3{font-family:'Bebas Neue',sans-serif;font-size:3rem;letter-spacing:.04em;line-height:1;margin-bottom:1rem;color:var(--g900)}
+    .col>p{font-size:.95rem;color:var(--g600);line-height:1.85;margin-bottom:2.5rem}
+    .citems{display:flex;flex-direction:column;gap:1.2rem}
+    .cit{display:flex;align-items:center;gap:1rem}
+    .cic{width:44px;height:44px;border-radius:10px;background:var(--green-2x);border:1px solid var(--green-xl);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .cic svg{width:18px;height:18px;fill:var(--green)}
+    .cil{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--green);font-weight:700;display:block}
+    .civ{font-size:.88rem;color:var(--g800);font-weight:500}
+    .cform{display:flex;flex-direction:column;gap:1.1rem}
+    .frow{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+    .fg{display:flex;flex-direction:column;gap:.4rem}
+    .fg label{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--g400)}
+    .fg input,.fg textarea,.fg select{background:var(--g100);border:1.5px solid var(--g200);border-radius:10px;padding:.85rem 1rem;font-family:'Inter',sans-serif;font-size:.9rem;color:var(--g900);outline:none;transition:border-color .25s,box-shadow .25s,background .25s}
+    .fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--green);background:#fff;box-shadow:0 0 0 4px rgba(22,163,74,.1)}
+    .fg textarea{resize:vertical;min-height:120px}
+
+    /* FOOTER */
+    footer{background:var(--g900);padding:2.5rem 3.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+    .fl{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.12em;color:#fff}
+    .fl span{color:var(--green-l)}
+    footer p{font-size:.75rem;color:rgba(255,255,255,.4)}
+    .fg2{color:var(--green-l)!important;font-weight:600}
+
+    /* ANIMATIONS */
+    @keyframes sU{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fI{from{opacity:0}to{opacity:1}}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.55;transform:scale(.8)}}
+    @keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+    /* REVEAL */
+    .rv{opacity:0;transform:translateY(36px);transition:opacity .75s ease,transform .75s ease}
+    .rvl{opacity:0;transform:translateX(-40px);transition:opacity .75s ease,transform .75s ease}
+    .rvr{opacity:0;transform:translateX(40px);transition:opacity .75s ease,transform .75s ease}
+    .rvs{opacity:0;transform:scale(.92);transition:opacity .75s ease,transform .75s cubic-bezier(.34,1.56,.64,1)}
+    .rv.on,.rvl.on,.rvr.on,.rvs.on{opacity:1;transform:none}
+
+    /* RESPONSIVE */
+    @media(max-width:1100px){
+      .hero{grid-template-columns:1fr}
+      .hr{display:none}
+      .hl{padding:9rem 3.5rem 5rem}
+      .awrap,.solhdr,.cogrid{grid-template-columns:1fr;gap:3rem}
+      .aimgs{display:none}
+      .pcards{grid-template-columns:1fr 1fr}
+      .scards{grid-template-columns:1fr 1fr}
+      .sgrid{grid-template-columns:1fr 1fr}
+      .sgrid::before{display:none}
+      .mgrid{grid-template-columns:repeat(3,1fr)}
+      .mgrd{grid-template-columns:1fr 1fr}
+      .mcard.big{grid-row:span 1;height:240px}
+    }
+    @media(max-width:720px){
+      nav{padding:0 1.5rem}
+      .nli{display:none}
+      #about,#problem,#solution,#journey,#team,#media,#challenges,#contact{padding:5rem 1.5rem}
+      .hl{padding:8rem 1.5rem 4rem}
+      .pcards,.scards,.mgrid{grid-template-columns:1fr}
+      .sgrid{grid-template-columns:1fr}
+      .cgrid{grid-template-columns:1fr}
+      .frow{grid-template-columns:1fr}
+      footer{padding:2rem 1.5rem;flex-direction:column;text-align:center}
+      .mgrd{grid-template-columns:1fr}
+    }
+  </style>
 </head>
 <body>
 
-  <!-- CUSTOM CURSOR -->
-  <div id="cursor"></div>
+<div id="cd"></div>
+<div id="cr"></div>
 
-  <!-- NAV -->
-  <nav class="navbar" id="navbar">
-    <a href="#" class="nav-logo">IDEA FOUNDRY</a>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#problem">Problem</a></li>
-      <li><a href="#mission">Mission</a></li>
-      <li><a href="#solution">Solution</a></li>
-      <li><a href="#journey">Journey</a></li>
-      <li><a href="#team">Team</a></li>
-      <li><a href="#media">Media</a></li>
-      <li><a href="#challenges">Challenges</a></li>
-      <li><a href="#contact" class="nav-contact-btn">Contact Us</a></li>
-    </ul>
-  </nav>
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nl"><span class="nd"></span>IDEA FOUNDRY</a>
+  <ul class="nli">
+    <li><a href="#about">About</a></li>
+    <li><a href="#problem">Problem</a></li>
+    <li><a href="#mission">Mission</a></li>
+    <li><a href="#solution">Solution</a></li>
+    <li><a href="#journey">Journey</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#media">Media</a></li>
+    <li><a href="#challenges">Challenges</a></li>
+    <li><a href="#contact" class="nc">Contact</a></li>
+  </ul>
+</nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-grid-bg"></div>
-    <div class="hero-glow"></div>
-    <div class="hero-left">
-      <div class="hero-eyebrow">eLab · African Leadership University · 2026</div>
-      <h1>SOLVING<br><span>CLIMATE</span><br>CHANGE<br>THROUGH<br>AGRICULTURE</h1>
-      <p class="hero-sub">Our Think Tank explored how sustainable agriculture can help communities in Bumbogo overcome climate challenges — from the soil up.</p>
-      <div class="hero-actions">
-        <a href="#about" class="btn-green">Explore Our Work</a>
-        <a href="#contact" class="btn-ghost">Get In Touch</a>
-      </div>
-      <div class="hero-stats">
-        <div class="hstat"><span class="hstat-num">5</span><span class="hstat-label">Members</span></div>
-        <div class="hstat"><span class="hstat-num">4</span><span class="hstat-label">Milestones</span></div>
-        <div class="hstat"><span class="hstat-num">1</span><span class="hstat-label">Community</span></div>
-        <div class="hstat"><span class="hstat-num">∞</span><span class="hstat-label">Impact</span></div>
-      </div>
+<!-- HERO -->
+<section class="hero">
+  <div class="hl">
+    <div class="eyebrow"><span class="eyd"></span>eLab &middot; African Leadership University &middot; 2026</div>
+    <h1>SOLVING<br><span class="acc">CLIMATE</span><br>CHANGE<br>THROUGH<br>AGRICULTURE</h1>
+    <p class="hsub">Our Think Tank explored how sustainable agriculture can help communities in Bumbogo overcome climate challenges — from the soil up.</p>
+    <div class="hact">
+      <a href="#about" class="btn bs">Explore Our Work</a>
+      <a href="#contact" class="btn bb">Get In Touch</a>
     </div>
-    <div class="hero-right">
-      <div class="hero-ring-wrap">
-        <div class="ring ring-1"><div class="ring-dot"></div></div>
-        <div class="ring ring-2"><div class="ring-dot"></div></div>
-        <div class="ring ring-3"><div class="ring-dot"></div></div>
-        <div class="hero-center-text">
-          <h3>BUMBOGO<br>RWANDA</h3>
-          <p>Ground Zero</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- MARQUEE -->
-  <div class="marquee-strip">
-    <div class="marquee-inner">
-      <span>SUSTAINABLE AGRICULTURE</span><span class="dot">●</span>
-      <span>SOIL RESTORATION</span><span class="dot">●</span>
-      <span>FOOD SECURITY</span><span class="dot">●</span>
-      <span>CLIMATE RESILIENCE</span><span class="dot">●</span>
-      <span>COMMUNITY EMPOWERMENT</span><span class="dot">●</span>
-      <span>BUMBOGO, RWANDA</span><span class="dot">●</span>
-      <span>AFRICAN LEADERSHIP UNIVERSITY</span><span class="dot">●</span>
-      <span>SUSTAINABLE AGRICULTURE</span><span class="dot">●</span>
-      <span>SOIL RESTORATION</span><span class="dot">●</span>
-      <span>FOOD SECURITY</span><span class="dot">●</span>
-      <span>CLIMATE RESILIENCE</span><span class="dot">●</span>
-      <span>COMMUNITY EMPOWERMENT</span><span class="dot">●</span>
-      <span>BUMBOGO, RWANDA</span><span class="dot">●</span>
-      <span>AFRICAN LEADERSHIP UNIVERSITY</span><span class="dot">●</span>
+    <div class="hstats">
+      <div class="hst"><span class="hsn">5</span><span class="hsl">Members</span></div>
+      <div class="hst"><span class="hsn">4</span><span class="hsl">Milestones</span></div>
+      <div class="hst"><span class="hsn">1</span><span class="hsl">Community</span></div>
+      <div class="hst"><span class="hsn">&#8734;</span><span class="hsl">Impact</span></div>
     </div>
   </div>
+  <div class="hr">
+    <div class="mosaic">
+      <div class="mi t">
+        <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=600&h=720&fit=crop&crop=entropy&auto=format&q=85" alt="Farmer in lush field" loading="eager">
+      </div>
+      <div class="mi s">
+        <img src="https://images.unsplash.com/photo-1523741543316-beb7fc7023d8?w=500&h=340&fit=crop&crop=entropy&auto=format&q=85" alt="Terraced farming in Africa" loading="eager">
+      </div>
+      <div class="mi s">
+        <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=500&h=340&fit=crop&crop=entropy&auto=format&q=85" alt="Fresh vegetable garden" loading="eager">
+      </div>
+    </div>
+    <div class="hbadge"><h4>BUMBOGO<br>RWANDA</h4><p>Ground Zero</p></div>
+  </div>
+</section>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="about-text reveal">
-      <span class="lbl">Who We Are</span>
-      <h2 class="sec-h" style="margin-bottom: 1.8rem">ABOUT<br>idea FOUNDRY</h2>
-      <p>The Idea Foundry is a student-led think tank focused on helping the Bumbogo community tackle the effects of climate change through sustainable agriculture. We research local challenges and design practical, climate-smart solutions that strengthen resilience, improve livelihoods, and create lasting impact.
+<!-- MARQUEE -->
+<div class="mq"><div class="mqi">
+  <span>SUSTAINABLE AGRICULTURE</span><span class="mqs">&bull;</span>
+  <span>SOIL RESTORATION</span><span class="mqs">&bull;</span>
+  <span>FOOD SECURITY</span><span class="mqs">&bull;</span>
+  <span>CLIMATE RESILIENCE</span><span class="mqs">&bull;</span>
+  <span>COMMUNITY EMPOWERMENT</span><span class="mqs">&bull;</span>
+  <span>BUMBOGO, RWANDA</span><span class="mqs">&bull;</span>
+  <span>AFRICAN LEADERSHIP UNIVERSITY</span><span class="mqs">&bull;</span>
+  <span>SUSTAINABLE AGRICULTURE</span><span class="mqs">&bull;</span>
+  <span>SOIL RESTORATION</span><span class="mqs">&bull;</span>
+  <span>FOOD SECURITY</span><span class="mqs">&bull;</span>
+  <span>CLIMATE RESILIENCE</span><span class="mqs">&bull;</span>
+  <span>COMMUNITY EMPOWERMENT</span><span class="mqs">&bull;</span>
+  <span>BUMBOGO, RWANDA</span><span class="mqs">&bull;</span>
+  <span>AFRICAN LEADERSHIP UNIVERSITY</span><span class="mqs">&bull;</span>
+</div></div>
 
-</p>
+<!-- ABOUT -->
+<section id="about">
+  <div class="awrap">
+    <div class="aimgs rvl">
+      <div class="ai tall">
+        <img src="https://images.unsplash.com/photo-1589923188900-85dae523342b?w=500&h=720&fit=crop&crop=entropy&auto=format&q=85" alt="Community agriculture Rwanda" loading="lazy">
+      </div>
+      <div class="ai sq">
+        <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=400&h=340&fit=crop&crop=entropy&auto=format&q=85" alt="Farming workshop" loading="lazy">
+      </div>
+      <div class="ai sq">
+        <img src="https://images.unsplash.com/photo-1462275646964-a0e3386b89fa?w=400&h=340&fit=crop&crop=entropy&auto=format&q=85" alt="Agriculture innovation" loading="lazy">
+      </div>
+      <div class="atag"><strong>2026</strong><span>eLab Initiative</span></div>
+    </div>
+    <div class="atext rvr">
+      <span class="stag">Who We Are</span>
+      <h2 class="sh">ABOUT<br>IDEA FOUNDRY</h2>
+      <p style="margin-top:1.5rem">The Idea Foundry is a student-led think tank focused on helping the Bumbogo community tackle the effects of climate change through sustainable agriculture. We research local challenges and design practical, climate-smart solutions that strengthen resilience, improve livelihoods, and create lasting impact.</p>
       <p>Through collaboration and innovation, we turn ideas into action, working toward a future where communities can adapt, thrive, and sustain their environment.</p>
+      <div class="pills">
+        <span class="pill">Research</span>
+        <span class="pill">Innovation</span>
+        <span class="pill">Community</span>
+        <span class="pill">Sustainability</span>
+        <span class="pill">Climate Action</span>
+      </div>
     </div>
-    <div class="about-card reveal" style="transition-delay: 0.15s">
-      <span class="about-card-icon">🌱</span>
-      <h3>Our Approach</h3>
-      <p>We combined academic research with field observation in Bumbogo — speaking directly with residents, farmers, and community leaders to understand the real scope of climate impact and co-design solutions that can actually work on the ground.</p>
-    </div>
-  </section>
+  </div>
+</section>
 
-  <!-- PROBLEM -->
-  <section id="problem">
-    <div class="problem-inner">
-      <div class="section-header reveal">
-        <div>
-          <span class="lbl">The Challenge</span>
-          <h2 class="sec-h">PROBLEM<br>STATEMENT</h2>
-        </div>
-        <p>Bumbogo's industrial environment and degraded ecosystem threaten the food security and livelihoods of thousands of families who depend on agriculture.</p>
+<!-- PROBLEM -->
+<section id="problem">
+  <div class="pin">
+    <div class="phdr rv">
+      <div>
+        <span class="stag">The Challenge</span>
+        <h2 class="sh">PROBLEM<br>STATEMENT</h2>
       </div>
-      <div class="problem-cards">
-        <div class="p-card reveal">
-          <div class="p-card-num">01</div>
-          <span class="p-card-icon">🏭</span>
-          <h3>Industrial Degradation</h3>
-          <p>Heavy industrial activity has stripped topsoil of its nutrients and biological diversity, severely limiting crop viability for local farmers.</p>
+      <p>Bumbogo's industrial environment and degraded ecosystem threaten the food security and livelihoods of thousands of families who depend on agriculture.</p>
+    </div>
+    <div class="pcards">
+      <div class="pc rv" style="transition-delay:.05s">
+        <div class="pci">
+          <img src="https://images.unsplash.com/photo-1527525443983-6e60c75fff46?w=640&h=440&fit=crop&crop=entropy&auto=format&q=85" alt="Industrial land degradation" loading="lazy">
+          <div class="pn">01</div>
         </div>
-        <div class="p-card reveal" style="transition-delay: 0.1s">
-          <div class="p-card-num">02</div>
-          <span class="p-card-icon">🌾</span>
-          <h3>Declining Harvests</h3>
-          <p>Families are experiencing dramatically reduced yields year after year, pushing many into food insecurity and financial strain.</p>
+        <div class="pcb"><h3>Industrial Degradation</h3><p>Heavy industrial activity has stripped topsoil of its nutrients and biological diversity, severely limiting crop viability for local farmers.</p></div>
+      </div>
+      <div class="pc rv" style="transition-delay:.15s">
+        <div class="pci">
+          <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=640&h=440&fit=crop&crop=entropy&auto=format&q=85" alt="Dry landscape and drought" loading="lazy">
+          <div class="pn">02</div>
         </div>
-        <div class="p-card reveal" style="transition-delay: 0.2s">
-          <div class="p-card-num">03</div>
-          <span class="p-card-icon">⛈️</span>
-          <h3>Climate Unpredictability</h3>
-          <p>Erratic rainfall, rising temperatures, and extreme weather events make traditional farming calendars unreliable and risky.</p>
+        <div class="pcb"><h3>Declining Harvests</h3><p>Families are experiencing dramatically reduced yields year after year, pushing many into food insecurity and financial strain.</p></div>
+      </div>
+      <div class="pc rv" style="transition-delay:.25s">
+        <div class="pci">
+          <img src="https://images.unsplash.com/photo-1504983875-d3b163aba9e6?w=640&h=440&fit=crop&crop=entropy&auto=format&q=85" alt="Extreme weather climate change" loading="lazy">
+          <div class="pn">03</div>
         </div>
+        <div class="pcb"><h3>Climate Unpredictability</h3><p>Erratic rainfall, rising temperatures, and extreme weather events make traditional farming calendars unreliable and risky.</p></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- MISSION -->
-  <section id="mission">
-    <div class="mission-inner">
-      <span class="lbl center">Why We Exist</span>
-      <h2 class="sec-h reveal">
-        "TO EMPOWER COMMUNITIES IN BUMBOGO BY PROMOTING
-        <em>SUSTAINABLE AGRICULTURE</em> THAT RESTORES SOIL HEALTH,
-        IMPROVES HARVESTS, AND REDUCES THE IMPACT OF
-        <em>CLIMATE CHANGE</em>."
-      </h2>
-    </div>
-  </section>
+<!-- MISSION -->
+<section id="mission">
+  <div class="min">
+    <div class="mtag rv">Why We Exist</div>
+    <div class="mline rv" style="transition-delay:.05s;margin:1.5rem auto"></div>
+    <h2 class="mq2 rv" style="transition-delay:.1s">"TO EMPOWER COMMUNITIES IN BUMBOGO BY PROMOTING <em>SUSTAINABLE AGRICULTURE</em> THAT RESTORES SOIL HEALTH, IMPROVES HARVESTS, AND REDUCES THE IMPACT OF <em>CLIMATE CHANGE</em>."</h2>
+  </div>
+</section>
 
-  <!-- SOLUTION -->
-  <section id="solution">
-    <div class="solution-top">
-      <div class="reveal">
-        <span class="lbl">Our Answer</span>
-        <h2 class="sec-h">OUR<br>SOLUTION</h2>
+<!-- SOLUTION -->
+<section id="solution">
+  <div class="soli">
+    <div class="solhdr rv">
+      <div>
+        <span class="stag">Our Answer</span>
+        <h2 class="sh">OUR<br>SOLUTION</h2>
       </div>
-      <div class="reveal" style="transition-delay: 0.15s">
-        <p>
-Our solution promotes sustainable agriculture through tree planting to improve soil and reduce erosion, climate-smart irrigation for reliable farming, kitchen gardens for better nutrition, and recycling initiatives that turn waste into income, creating both environmental and economic benefits.</p>
+      <p>Our solution promotes sustainable agriculture through tree planting to improve soil and reduce erosion, climate-smart irrigation for reliable farming, kitchen gardens for better nutrition, and recycling initiatives that turn waste into income — creating both environmental and economic benefits.</p>
+    </div>
+    <div class="scards">
+      <div class="sc rv" style="transition-delay:.05s">
+        <div class="sci"><img src="https://images.unsplash.com/photo-1476231682828-37e571bc172f?w=500&h=400&fit=crop&crop=entropy&auto=format&q=85" alt="Tree planting and reforestation" loading="lazy"></div>
+        <div class="scb"><span class="chip">Ecology</span><h4>Tree Planting &amp; Land Restoration</h4><p>Improve soil fertility and reduce erosion across Bumbogo.</p></div>
+      </div>
+      <div class="sc rv" style="transition-delay:.12s">
+        <div class="sci"><img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=500&h=400&fit=crop&crop=entropy&auto=format&q=85" alt="Kitchen vegetable garden" loading="lazy"></div>
+        <div class="scb"><span class="chip">Nutrition</span><h4>Sustainable Kitchen Gardens</h4><p>Year-round gardens providing consistent, nutritious harvests for families.</p></div>
+      </div>
+      <div class="sc rv" style="transition-delay:.19s">
+        <div class="sci"><img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?w=500&h=400&fit=crop&crop=entropy&auto=format&q=85" alt="Smart irrigation water system" loading="lazy"></div>
+        <div class="scb"><span class="chip">Water</span><h4>Climate-Smart Irrigation</h4><p>Reliable farming water access even during dry seasons.</p></div>
+      </div>
+      <div class="sc rv" style="transition-delay:.26s">
+        <div class="sci"><img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=500&h=400&fit=crop&crop=entropy&auto=format&q=85" alt="Recycled materials art" loading="lazy"></div>
+        <div class="scb"><span class="chip">Economy</span><h4>Recycled Art Initiative</h4><p>Turn waste into income-generating creative products for the community.</p></div>
       </div>
     </div>
-    <div class="solution-cards">
-      <div class="s-card reveal">
-        <span class="s-card-icon">🌿</span>
-        <h4>Tree Planting & Land Restoration</h4>
-        <p>Improve soil fertility and reduces erosion</p>
-      </div>
-      <div class="s-card reveal" style="transition-delay: 0.08s">
-        <span class="s-card-icon">🥬</span>
-        <h4>Sustainable Kitchen Gardens</h4>
-        <p>Year-round kitchen gardens provide consistent, nutritious harvests for families.</p>
-      </div>
-      <div class="s-card reveal" style="transition-delay: 0.16s">
-        <span class="s-card-icon">💧</span>
-        <h4>Climate-Smart Irrigation</h4>
-        <p>Reliable farming during dry seasons</p>
-      </div>
-      <div class="s-card reveal" style="transition-delay: 0.24s">
-        <span class="s-card-icon">🎨</span>
-        <h4>Recycled Art Initiative</h4>
-        <p>Turn waste into income-generating products</p>
-      </div>
-    </div>
-  </section>
+  </div>
+</section>
 
-  <!-- JOURNEY -->
-  <section id="journey">
-    <div class="journey-inner">
-      <div class="section-header reveal">
-        <div>
-          <span class="lbl">How We Got Here</span>
-          <h2 class="sec-h">OUR<br>eLAB JOURNEY</h2>
-        </div>
-        <p>Four focused phases that took us from a classroom hypothesis to a real community solution.</p>
-      </div>
-      <div class="steps-grid">
-        <div class="step reveal">
-          <div class="step-node"></div>
-          <div class="step-num">01</div>
-          <h3>Research</h3>
-          <p>We studied the intersection of climate change and agricultural productivity across Rwanda's communities.</p>
-        </div>
-        <div class="step reveal" style="transition-delay: 0.1s">
-          <div class="step-node"></div>
-          <div class="step-num">02</div>
-          <h3>Region Selection</h3>
-          <p>Bumbogo emerged as the most critically affected industrial zone — where our intervention could create real change.</p>
-        </div>
-        <div class="step reveal" style="transition-delay: 0.2s">
-          <div class="step-node"></div>
-          <div class="step-num">03</div>
-          <h3>Community Listening</h3>
-          <p>We mapped real agricultural patterns and documented first-hand climate impact stories directly from residents.</p>
-        </div>
-        <div class="step reveal" style="transition-delay: 0.3s">
-          <div class="step-node"></div>
-          <div class="step-num">04</div>
-          <h3>Solution Design</h3>
-          <p>Armed with community insight, we engineered a practical kitchen garden system tailored to Bumbogo's constraints.</p>
-        </div>
-      </div>
+<!-- JOURNEY -->
+<section id="journey">
+  <div class="joi">
+    <div class="rv">
+      <span class="stag">How We Got Here</span>
+      <h2 class="sh">OUR eLAB<br>JOURNEY</h2>
+      <p style="margin-top:1rem;color:var(--g600);font-size:.95rem;max-width:540px;line-height:1.8">Four focused phases that took us from a classroom hypothesis to a real community solution in Bumbogo, Rwanda.</p>
     </div>
-  </section>
+    <div class="sgrid">
+      <div class="step rv" style="transition-delay:.05s"><div class="sdot"><span>01</span></div><h3>Research</h3><p>We studied the intersection of climate change and agricultural productivity across Rwanda's communities.</p></div>
+      <div class="step rv" style="transition-delay:.15s"><div class="sdot"><span>02</span></div><h3>Region Selection</h3><p>Bumbogo emerged as the most critically affected industrial zone — where our intervention could create real change.</p></div>
+      <div class="step rv" style="transition-delay:.25s"><div class="sdot"><span>03</span></div><h3>Community Listening</h3><p>We mapped real agricultural patterns and documented first-hand climate impact stories from residents.</p></div>
+      <div class="step rv" style="transition-delay:.35s"><div class="sdot"><span>04</span></div><h3>Solution Design</h3><p>Armed with community insight, we engineered a practical kitchen garden system tailored to Bumbogo's constraints.</p></div>
+    </div>
+  </div>
+</section>
 
-  <!-- TEAM -->
-  <section id="team">
-    <div class="team-header reveal">
-      <span class="lbl">The People</span>
-      <h2 class="sec-h">THINK TANK<br>MEMBERS</h2>
-    </div>
-    <div class="member-grid">
-      <div class="member reveal">
-        <div class="member-avatar">
-          <img src="caessy.PNG" alt="Member" onerror="this.style.display='none'; this.parentNode.innerHTML='M'">
-        </div>
-        <h3>NGARAMBE Tressa</h3>
-        <p>Team Lead</p>
+<!-- TEAM -->
+<section id="team">
+  <div class="tmi">
+    <div class="rv"><span class="stag">The People</span><h2 class="sh">THINK TANK<br>MEMBERS</h2></div>
+    <div class="mgrid">
+      <div class="mem rv" style="transition-delay:.05s">
+        <div class="mav"><img src="caessy.PNG" alt="NGARAMBE Tressa" onerror="this.style.display='none'"></div>
+        <h3>NGARAMBE Tressa</h3><p>Team Lead</p><div class="mrb"></div>
       </div>
-      <div class="member reveal" style="transition-delay: 0.08s">
-        <div class="member-avatar">
-          <img src="nicia.jpeg" alt="Member" onerror="this.style.display='none'; this.parentNode.innerHTML='M'">
-        </div>
-        <h3>AGASARO Nicia</h3>
-        <p>Web Designer</p>
+      <div class="mem rv" style="transition-delay:.1s">
+        <div class="mav"><img src="nicia.jpeg" alt="AGASARO Nicia" onerror="this.style.display='none'"></div>
+        <h3>AGASARO Nicia</h3><p>Web Designer</p><div class="mrb"></div>
       </div>
-      <div class="member reveal" style="transition-delay: 0.16s">
-        <div class="member-avatar">
-          <img src="Noah.jpeg" alt="Member" onerror="this.style.display='none'; this.parentNode.innerHTML='M'">
-        </div>
-        <h3>NTWALI Noah</h3>
-        <p>Visual Designer</p>
+      <div class="mem rv" style="transition-delay:.15s">
+        <div class="mav"><img src="noah.jpeg" alt="NTWALI Noah" onerror="this.style.display='none'"></div>
+        <h3>NTWALI Noah</h3><p>Visual Designer</p><div class="mrb"></div>
       </div>
-      <div class="member reveal" style="transition-delay: 0.24s">
-        <div class="member-avatar">
-          <img src="nicolas.jpeg" alt="Member" onerror="this.style.display='none'; this.parentNode.innerHTML='M'">
-        </div>
-        <h3>SHIMA Nicolas</h3>
-        <p>Content Manager</p>
+      <div class="mem rv" style="transition-delay:.2s">
+        <div class="mav"><img src="nicolas.jpeg" alt="SHIMA Nicolas" onerror="this.style.display='none'"></div>
+        <h3>SHIMA Nicolas</h3><p>Content Manager</p><div class="mrb"></div>
       </div>
-      <div class="member reveal" style="transition-delay: 0.32s">
-        <div class="member-avatar">
-          <img src="exauce.jpeg" alt="Member" onerror="this.style.display='none'; this.parentNode.innerHTML='M'">
-        </div>
-        <h3>Exauce Sen BOWE</h3>
-        <p>Visual Designer</p>
+      <div class="mem rv" style="transition-delay:.25s">
+        <div class="mav"><img src="exauce.jpeg" alt="Exauce Sen BOWE" onerror="this.style.display='none'"></div>
+        <h3>Exauce Sen BOWE</h3><p>Visual Designer</p><div class="mrb"></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  
-
-
-  
-   <!-- CHALLENGES -->
-  <section id="challenges">
-    <div class="challenges-inner">
-      <div class="section-header reveal">
-        <div>
-          <span class="lbl">eLab Course Videos</span>
-          <h2 class="sec-h">CHALLENGES</h2>
-        </div>
-        <p>Five videos we produced throughout our eLab course — documenting our process, findings, and community work in Bumbogo.</p>
+<!-- MEDIA -->
+<section id="media">
+  <div class="medi">
+    <div class="rv">
+      <span class="stag">Field Work</span>
+      <h2 class="sh">IN THE<br>FIELD</h2>
+      <p style="margin-top:1rem;color:var(--g600);font-size:.95rem;max-width:500px;line-height:1.8">Snapshots from our community visits, workshops, and fieldwork in Bumbogo, Rwanda.</p>
+    </div>
+    <div class="mgrd">
+      <div class="mcard big rvl">
+        <img src="https://images.unsplash.com/photo-1599059813005-11265ba4b4ce?w=800&h=840&fit=crop&crop=entropy&auto=format&q=85" alt="Community farmers engaged in sustainable agriculture" loading="lazy">
+        <div class="mov"><div class="movt"><h4>Community Engagement</h4><p>Working directly with Bumbogo residents</p></div></div>
       </div>
- 
-      <div class="challenges-grid">
- 
-        <!-- VIDEO CARD 1 -->
-        <div class="challenge-card reveal">
-          <div class="challenge-video-wrap">
-            <iframe
-              src="https://www.youtube.com/embed/gtXAcr_PQxU"
-              title="Challenge 1"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen>
-            </iframe>
-          </div>
-          <div class="challenge-info">
-            <span class="challenge-num">01</span>
-            <div>
-              <h3>Challenge Title</h3>
-              <p>Brief description of what this video covers or which challenge it documents.</p>
-            </div>
-          </div>
-        </div>
- 
-        <!-- VIDEO CARD 2 -->
-        <div class="challenge-card reveal" style="transition-delay: 0.1s">
-          <div class="challenge-video-wrap">
-            <iframe
-              src="https://www.youtube.com/embed/mvHBauyYejE"
-              title="Challenge 2"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen>
-            </iframe>
-          </div>
-          <div class="challenge-info">
-            <span class="challenge-num">02</span>
-            <div>
-              <h3>Challenge Title</h3>
-              <p>Brief description of what this video covers or which challenge it documents.</p>
-            </div>
-          </div>
-        </div>
- 
-        <!-- VIDEO CARD 3 -->
-        <div class="challenge-card reveal" style="transition-delay: 0.2s">
-          <div class="challenge-video-wrap">
-            <iframe
-              src="https://www.youtube.com/embed/gOt4Hx3fdQA"
-              title="Challenge 3"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen>
-            </iframe>
-          </div>
-          <div class="challenge-info">
-            <span class="challenge-num">03</span>
-            <div>
-              <h3>Challenge Title</h3>
-              <p>Brief description of what this video covers or which challenge it documents.</p>
-            </div>
-          </div>
-        </div>
- 
-        <!-- VIDEO CARD 4 -->
-        <div class="challenge-card reveal" style="transition-delay: 0.3s">
-          <div class="challenge-video-wrap">
-            <iframe
-             
-              
-              src="https://www.youtube.com/embed/LHo3E9sVX08"
-              title="Challenge 4"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen>
-            </iframe>
-          </div>
-          <div class="challenge-info">
-            <span class="challenge-num">04</span>
-            <div>
-              <h3>Challenge Title</h3>
-              <p>Brief description of what this video covers or which challenge it documents.</p>
-            </div>
-          </div>
-        </div>
- 
-        <!-- VIDEO CARD 5 -->
-        <div class="challenge-card reveal" style="transition-delay: 0.4s">
-          <div class="challenge-video-wrap">
-            <iframe
-               src="https://www.youtube.com/embed/YnTthw5taO8"
-              
-            
-              title="Challenge 5"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen>
-            </iframe>
-          </div>
-          <div class="challenge-info">
-            <span class="challenge-num">05</span>
-            <div>
-              <h3>Challenge Title</h3>
-              <p>Brief description of what this video covers or which challenge it documents.</p>
-            </div>
-          </div>
-        </div>
- 
+      <div class="mcard sm rv" style="transition-delay:.1s">
+        <img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?w=500&h=400&fit=crop&crop=entropy&auto=format&q=85" alt="Green farmland and agriculture" loading="lazy">
+        <div class="mov"><div class="movt"><h4>Farmland Mapping</h4><p>Documenting degraded land zones</p></div></div>
+      </div>
+      <div class="mcard sm rv" style="transition-delay:.15s">
+        <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?w=500&h=400&fit=crop&crop=entropy&auto=format&q=85" alt="Soil research and analysis" loading="lazy">
+        <div class="mov"><div class="movt"><h4>Soil Research</h4><p>Testing and analyzing soil health</p></div></div>
+      </div>
+      <div class="mcard sm rv" style="transition-delay:.2s">
+        <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=500&h=400&fit=crop&crop=entropy&auto=format&q=85" alt="Nature and sustainability" loading="lazy">
+        <div class="mov"><div class="movt"><h4>Environment Study</h4><p>Assessing local biodiversity</p></div></div>
+      </div>
+      <div class="mcard sm rv" style="transition-delay:.25s">
+        <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=500&h=400&fit=crop&crop=entropy&auto=format&q=85" alt="Tree planting initiative" loading="lazy">
+        <div class="mov"><div class="movt"><h4>Tree Planting</h4><p>Restoring the land, one tree at a time</p></div></div>
       </div>
     </div>
-  </section>
- 
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="reveal">
-      <span class="lbl">Reach Out</span>
-      <h2 class="sec-h">GET IN<br>TOUCH</h2>
+  </div>
+</section>
+
+<!-- CHALLENGES -->
+<section id="challenges">
+  <div class="chi">
+    <div class="rv">
+      <span class="stag">eLab Course Videos</span>
+      <h2 class="sh">CHALLENGES</h2>
+      <p style="margin-top:.8rem;color:var(--g600);font-size:.95rem;max-width:500px;line-height:1.8">Five videos we produced throughout our eLab course — documenting our process, findings, and community work in Bumbogo.</p>
     </div>
-    <div class="contact-grid">
-      <div class="contact-left reveal">
+    <div class="cgrid">
+      <div class="cc rv" style="transition-delay:.05s">
+        <div class="cvw"><iframe src="https://www.youtube.com/embed/gtXAcr_PQxU" title="Challenge 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+        <div class="cinfo"><span class="cn">01</span><div><h3>Initial Research</h3><p>Documenting our discovery and early research process in Bumbogo.</p></div></div>
+      </div>
+      <div class="cc rv" style="transition-delay:.1s">
+        <div class="cvw"><iframe src="https://www.youtube.com/embed/mvHBauyYejE" title="Challenge 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+        <div class="cinfo"><span class="cn">02</span><div><h3>Problem Landscape</h3><p>Exploring the climate impact and challenges facing the Bumbogo community.</p></div></div>
+      </div>
+      <div class="cc rv" style="transition-delay:.15s">
+        <div class="cvw"><iframe src="https://www.youtube.com/embed/gOt4Hx3fdQA" title="Challenge 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+        <div class="cinfo"><span class="cn">03</span><div><h3>Co-Creation</h3><p>Solution ideation and co-creation with community members on the ground.</p></div></div>
+      </div>
+      <div class="cc rv" style="transition-delay:.2s">
+        <div class="cvw"><iframe src="https://www.youtube.com/embed/LHo3E9sVX08" title="Challenge 4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+        <div class="cinfo"><span class="cn">04</span><div><h3>Prototyping</h3><p>Testing and refining our kitchen garden and irrigation prototypes.</p></div></div>
+      </div>
+      <div class="cc rv" style="transition-delay:.25s">
+        <div class="cvw"><iframe src="https://www.youtube.com/embed/YnTthw5taO8" title="Challenge 5" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+        <div class="cinfo"><span class="cn">05</span><div><h3>Final Reflections</h3><p>Outcomes, impact measurement, and our vision for scaling the solution.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="coni">
+    <div class="rv"><span class="stag">Reach Out</span><h2 class="sh">GET IN<br>TOUCH</h2></div>
+    <div class="cogrid">
+      <div class="col rvl">
         <h3>LET'S<br>COLLABORATE</h3>
         <p>Have questions about our research, want to collaborate on sustainable agriculture initiatives, or interested in supporting our work in Bumbogo? We'd love to hear from you.</p>
-        <div class="contact-info">
-          <div class="contact-item">
-            <div class="contact-item-icon">📍</div>
-            <div class="contact-item-text">
-              <span class="contact-item-label">Location</span>
-              <span class="contact-item-val">African Leadership University, Kigali, Rwanda</span>
-            </div>
+        <div class="citems">
+          <div class="cit">
+            <div class="cic"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+            <div><span class="cil">Location</span><span class="civ">African Leadership University, Kigali, Rwanda</span></div>
           </div>
-          <div class="contact-item">
-            <div class="contact-item-icon">✉️</div>
-            <div class="contact-item-text">
-              <span class="contact-item-label">Email</span>
-              <span class="contact-item-val">ideafoundry@alustudent.com</span>
-            </div>
+          <div class="cit">
+            <div class="cic"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+            <div><span class="cil">Email</span><span class="civ">ideafoundry@alustudent.com</span></div>
           </div>
-          <div class="contact-item">
-            <div class="contact-item-icon">🎓</div>
-            <div class="contact-item-text">
-              <span class="contact-item-label">Programme</span>
-              <span class="contact-item-val">eLab · Entrepreneurship Lab · 2026</span>
-            </div>
+          <div class="cit">
+            <div class="cic"><svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg></div>
+            <div><span class="cil">Programme</span><span class="civ">eLab &middot; Entrepreneurship Lab &middot; 2026</span></div>
           </div>
         </div>
       </div>
-      <div class="contact-form reveal" style="transition-delay: 0.15s">
-        <div class="form-row">
-          <div class="form-group">
-            <label>First Name</label>
-            <input type="text" placeholder="Your first name">
-          </div>
-          <div class="form-group">
-            <label>Last Name</label>
-            <input type="text" placeholder="Your last name">
-          </div>
+      <div class="cform rvr">
+        <div class="frow">
+          <div class="fg"><label>First Name</label><input type="text" placeholder="Your first name"></div>
+          <div class="fg"><label>Last Name</label><input type="text" placeholder="Your last name"></div>
         </div>
-        <div class="form-group">
-          <label>Email Address</label>
-          <input type="email" placeholder="you@example.com">
-        </div>
-        <div class="form-group">
-          <label>Subject</label>
+        <div class="fg"><label>Email Address</label><input type="email" placeholder="you@example.com"></div>
+        <div class="fg"><label>Subject</label>
           <select>
             <option value="">Select a topic...</option>
             <option>Research Collaboration</option>
@@ -451,24 +616,56 @@ Our solution promotes sustainable agriculture through tree planting to improve s
             <option>General Question</option>
           </select>
         </div>
-        <div class="form-group">
-          <label>Message</label>
-          <textarea placeholder="Tell us what's on your mind..."></textarea>
-        </div>
-        <button class="btn-green form-submit" onclick="handleSubmit(this)">Send Message →</button>
+        <div class="fg"><label>Message</label><textarea placeholder="Tell us what's on your mind..."></textarea></div>
+        <button class="btn bs" style="align-self:flex-start" onclick="sendMsg(this)">Send Message &rarr;</button>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-logo">IDEA FOUNDRY</div>
-    <p>© 2026 eLab IDEA FOUNDRY · African Leadership University · Kigali, Rwanda</p>
-    <p style="color: var(--green)">Solving Climate Change Through Agriculture</p>
-  </footer>
+<footer>
+  <div class="fl">IDEA <span>FOUNDRY</span></div>
+  <p>&copy; 2026 eLab IDEA FOUNDRY &middot; African Leadership University &middot; Kigali, Rwanda</p>
+  <p class="fg2">Solving Climate Change Through Agriculture</p>
+</footer>
 
-  <!-- JavaScript -->
-  <script src="script.js"></script>
+<script>
+/* DUAL CURSOR */
+const cd = document.getElementById('cd');
+const cr = document.getElementById('cr');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX; my=e.clientY;
+  cd.style.left=mx+'px'; cd.style.top=my+'px';
+});
+(function loop(){
+  rx+=(mx-rx)*.13; ry+=(my-ry)*.13;
+  cr.style.left=rx+'px'; cr.style.top=ry+'px';
+  requestAnimationFrame(loop);
+})();
+document.querySelectorAll('a,button,.pc,.sc,.mem,.step,.mcard,.cc,.mi,.ai').forEach(el=>{
+  el.addEventListener('mouseenter',()=>cr.classList.add('h'));
+  el.addEventListener('mouseleave',()=>cr.classList.remove('h'));
+});
 
+/* NAVBAR */
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('sc',scrollY>60);
+});
+
+/* SCROLL REVEAL */
+const obs=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target)}});
+},{threshold:.1});
+document.querySelectorAll('.rv,.rvl,.rvr,.rvs').forEach(el=>obs.observe(el));
+
+/* FORM */
+function sendMsg(b){
+  const o=b.textContent;
+  b.textContent='Sent!';
+  b.style.background='#15803d';
+  setTimeout(()=>{b.textContent=o;b.style.background=''},3000);
+}
+</script>
 </body>
 </html>
